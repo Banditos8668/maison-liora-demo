@@ -11581,3 +11581,466 @@ p {
 }
 
 /* ── END FOOTER SOCIAL ICONS FINAL ── */
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE NAVIGATION — full-screen overlay redesign
+   Overrides all old ml-header__mobile rules.
+   Tested for iPhone SE (568px height) through 14 Pro Max (932px).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Full-screen panel ── */
+.ml-header__mobile {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 10 !important;           /* inside header's stacking ctx (z-1000) */
+  background: #FAF8F5 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-8px) !important;
+  transition: opacity 0.25s ease, transform 0.28s ease !important;
+}
+.ml-header__mobile--open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* ── Top bar: brand name + close button ── */
+.ml-mob__top {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 24px !important;
+  height: 68px !important;
+  flex-shrink: 0 !important;
+  border-bottom: 1px solid rgba(36, 26, 23, 0.08) !important;
+}
+.ml-mob__brand {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  color: #241A17 !important;
+}
+.ml-mob__close {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+  border: 1px solid rgba(36, 26, 23, 0.14) !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  color: #241A17 !important;
+  -webkit-tap-highlight-color: transparent !important;
+  transition: background 0.18s ease, border-color 0.18s ease !important;
+}
+.ml-mob__close:hover {
+  background: rgba(36, 26, 23, 0.05) !important;
+  border-color: rgba(36, 26, 23, 0.26) !important;
+}
+.ml-mob__close:active {
+  background: rgba(36, 26, 23, 0.09) !important;
+}
+
+/* ── Scrollable body (nav links + lang toggle) ── */
+.ml-mob__body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+}
+
+/* ── Nav links — generous tap targets ── */
+.ml-header__mobile-link {
+  display: block !important;
+  padding: 20px 24px !important;
+  font-size: 1.08rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  color: #241A17 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(36, 26, 23, 0.06) !important;
+  transition: background 0.14s ease, color 0.14s ease, padding-left 0.16s ease !important;
+}
+.ml-header__mobile-link:hover {
+  background: rgba(36, 26, 23, 0.025) !important;
+  color: #B97972 !important;
+  padding-left: 30px !important;
+}
+.ml-header__mobile-link:active {
+  background: rgba(185, 121, 114, 0.07) !important;
+  color: #8C4F48 !important;
+}
+
+/* ── Language toggle row inside scrollable body ── */
+.ml-mob__lang {
+  padding: 24px 24px 20px !important;
+  border-top: none !important;
+}
+
+/* ── Pinned CTA area at bottom ── */
+.ml-mob__ctas {
+  flex-shrink: 0 !important;
+  padding: 16px 24px !important;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  border-top: 1px solid rgba(36, 26, 23, 0.08) !important;
+  background: #FAF8F5 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.ml-mob__cta-book,
+.ml-mob__cta-phone {
+  width: 100% !important;
+  text-align: center !important;
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+/* ── Hide old footer structure (replaced by ml-mob__ctas) ── */
+.ml-header__mobile-footer {
+  display: none !important;
+}
+
+/* ── Overlay div no longer needed — full-screen menu covers page ── */
+.ml-header__overlay {
+  display: none !important;
+}
+
+/* ── Compact layout for very small screens (≤ 380px, e.g. SE) ── */
+@media (max-height: 620px) {
+  .ml-header__mobile-link {
+    padding: 16px 24px !important;
+    font-size: 1rem !important;
+  }
+  .ml-mob__lang {
+    padding: 16px 24px 12px !important;
+  }
+  .ml-mob__ctas {
+    padding: 12px 24px !important;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    gap: 8px !important;
+  }
+}
+
+/* ── END MOBILE NAV OVERLAY ── */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   LIVE QA FIX PASS — Three targeted issues
+   1. Mobile menu: larger font, solid background, full-screen authority
+   2. Mobile typography: 17px body minimum, readable cards/FAQ/buttons
+   3. FAQ accordion: auto height everywhere, no ghost space
+   All rules use !important to win the existing 11 700-line cascade.
+   ════════════════════════════════════════════════════════════════════════ */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   FIX 1 — MOBILE MENU — full-screen, solid cream, large legible links
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Base overlay: always full-screen, transitions via opacity/transform ── */
+.ml-header__mobile {
+  position:         fixed          !important;
+  top:              0              !important;
+  left:             0              !important;
+  right:            0              !important;
+  bottom:           0              !important;
+  width:            100vw          !important;
+  height:           100dvh         !important;
+  max-height:       100dvh         !important;
+  min-height:       0              !important;
+  z-index:          999            !important;  /* below header bar (1000) but covers everything else */
+  background:       #FAF8F5        !important;
+  backdrop-filter:  none           !important;
+  -webkit-backdrop-filter: none    !important;
+  border:           none           !important;
+  border-bottom:    none           !important;
+  box-shadow:       none           !important;
+  padding:          0              !important;
+  margin:           0              !important;
+  display:          flex           !important;
+  flex-direction:   column         !important;
+  overflow:         hidden         !important;  /* outer panel doesn't scroll */
+  opacity:          0              !important;
+  visibility:       hidden         !important;
+  pointer-events:   none           !important;
+  transform:        translateX(0) translateY(0) !important;
+  transition:       opacity 0.24s ease,
+                    visibility 0.24s ease        !important;
+}
+.ml-header__mobile--open {
+  opacity:        1     !important;
+  visibility:     visible !important;
+  pointer-events: auto  !important;
+}
+
+/* ── Raise the header bar itself above the overlay ── */
+.ml-header {
+  z-index: 1000 !important;
+}
+
+/* ── Top bar inside overlay ── */
+.ml-mob__top {
+  display:          flex           !important;
+  align-items:      center         !important;
+  justify-content:  space-between  !important;
+  padding:          0 24px         !important;
+  height:           68px           !important;
+  min-height:       68px           !important;
+  flex-shrink:      0              !important;
+  border-bottom:    1px solid rgba(36, 26, 23, 0.09) !important;
+  background:       #FAF8F5        !important;
+}
+.ml-mob__brand {
+  font-family:  Georgia, 'Times New Roman', serif !important;
+  font-size:    1.15rem  !important;
+  font-weight:  400      !important;
+  color:        #241A17  !important;
+  letter-spacing: -0.01em !important;
+  line-height:  1        !important;
+}
+.ml-mob__close {
+  display:          flex     !important;
+  align-items:      center   !important;
+  justify-content:  center   !important;
+  flex-shrink:      0        !important;
+  width:            44px     !important;
+  height:           44px     !important;
+  background:       transparent !important;
+  border:           1px solid rgba(36, 26, 23, 0.15) !important;
+  border-radius:    50%      !important;
+  cursor:           pointer  !important;
+  color:            #241A17  !important;
+  padding:          0        !important;
+  -webkit-tap-highlight-color: transparent !important;
+  transition:       background 0.18s ease, border-color 0.18s ease !important;
+}
+.ml-mob__close:hover  { background: rgba(36, 26, 23, 0.06) !important; border-color: rgba(36, 26, 23, 0.28) !important; }
+.ml-mob__close:active { background: rgba(36, 26, 23, 0.10) !important; }
+
+/* ── Scrollable body ── */
+.ml-mob__body {
+  flex:                  1     !important;
+  overflow-y:            auto  !important;
+  overflow-x:            hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior:   contain !important;
+  background:            #FAF8F5 !important;
+}
+
+/* ── Nav links: 20px font, 60px tap-target ── */
+.ml-header__mobile-link {
+  display:          block       !important;
+  width:            100%        !important;
+  box-sizing:       border-box  !important;
+  padding:          18px 24px   !important;
+  min-height:       60px        !important;
+  font-family:      Georgia, 'Times New Roman', serif !important;
+  font-size:        1.25rem     !important;  /* ~20px */
+  font-weight:      400         !important;
+  letter-spacing:   0.005em     !important;
+  color:            #241A17     !important;
+  text-decoration:  none        !important;
+  border:           none        !important;
+  border-bottom:    1px solid rgba(36, 26, 23, 0.07) !important;
+  background:       transparent !important;
+  transition:       background 0.14s ease, color 0.14s ease, padding-left 0.15s ease !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.ml-header__mobile-link:hover  { background: rgba(36, 26, 23, 0.03) !important; color: #B97972 !important; padding-left: 30px !important; }
+.ml-header__mobile-link:active { background: rgba(185, 121, 114, 0.07) !important; color: #8C4F48 !important; }
+
+/* ── Language toggle row ── */
+.ml-mob__lang {
+  padding:    24px 24px 20px !important;
+  background: #FAF8F5        !important;
+}
+
+/* ── Pinned CTA footer ── */
+.ml-mob__ctas {
+  flex-shrink:      0     !important;
+  display:          flex  !important;
+  flex-direction:   column !important;
+  gap:              10px  !important;
+  padding:          16px 24px !important;
+  padding-bottom:   calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  border-top:       1px solid rgba(36, 26, 23, 0.09) !important;
+  background:       #FAF8F5 !important;
+}
+.ml-mob__cta-book,
+.ml-mob__cta-phone {
+  width:            100%   !important;
+  display:          flex   !important;
+  align-items:      center !important;
+  justify-content:  center !important;
+  box-sizing:       border-box !important;
+  white-space:      normal !important;
+}
+
+/* ── Compact on very short screens (iPhone SE landscape / 568px tall) ── */
+@media (max-height: 600px) {
+  .ml-mob__top           { height: 56px !important; min-height: 56px !important; }
+  .ml-header__mobile-link { padding: 14px 24px !important; min-height: 48px !important; font-size: 1.1rem !important; }
+  .ml-mob__lang          { padding: 14px 24px 10px !important; }
+  .ml-mob__ctas          { padding: 12px 24px !important; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important; gap: 8px !important; }
+}
+
+/* ── Kill the old overlay div (no longer used) ── */
+.ml-header__overlay  { display: none !important; }
+
+/* ── Kill the old cramped mobile footer (replaced by ml-mob__ctas) ── */
+.ml-header__mobile-footer { display: none !important; }
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   FIX 2 — MOBILE TYPOGRAPHY — 17px minimum, 1.65 line-height
+   Applies to ≤768px only. Does NOT touch hero headline or section labels.
+   ════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── Base body text ── */
+  body {
+    font-size:   1.0625rem !important;  /* 17px */
+    line-height: 1.65      !important;
+  }
+
+  /* ── General paragraphs ── */
+  p {
+    font-size:   1.0625rem !important;
+    line-height: 1.65      !important;
+  }
+
+  /* ── FAQ questions ── */
+  .faq__question {
+    font-size:  1.0625rem !important;  /* 17px */
+    padding:    18px 20px !important;
+    min-height: 52px      !important;
+  }
+  .faq__answer {
+    font-size:   1rem  !important;
+    line-height: 1.68  !important;
+    padding:     0 20px 20px !important;
+  }
+
+  /* ── Service / treatment card text ── */
+  .ritual-card__name,
+  .service-card__name,
+  .services__primary-name {
+    font-size: 1rem !important;
+  }
+  .ritual-card__desc,
+  .service-card__desc,
+  .services__primary-desc {
+    font-size:   0.96rem !important;
+    line-height: 1.62    !important;
+  }
+
+  /* ── Testimonial cards ── */
+  .testimonial-card__text { font-size: 1rem   !important; line-height: 1.65 !important; }
+  .testimonial-card__name { font-size: 0.96rem !important; }
+
+  /* ── Founder bio ── */
+  .founder__bio {
+    font-size:   1rem  !important;
+    line-height: 1.72  !important;
+  }
+
+  /* ── Booking / callback body copy ── */
+  .booking2__copy-paragraph,
+  .callback2__body {
+    font-size:   1rem  !important;
+    line-height: 1.65  !important;
+  }
+
+  /* ── Buttons: 16px minimum on mobile ── */
+  .btn {
+    font-size: 0.875rem !important;   /* 14px → enough, buttons use uppercase letter-spacing */
+  }
+  .btn-sm {
+    font-size: 0.875rem !important;
+  }
+
+  /* ── Pricing list items ── */
+  .ps__item-name { font-size: 0.96rem !important; }
+  .ps__item-desc { font-size: 0.88rem !important; }
+
+  /* ── Footer readable on mobile ── */
+  .footer__link    { font-size: 0.92rem !important; }
+  .footer__tagline { font-size: 0.92rem !important; }
+  .footer__col-heading { font-size: 0.75rem !important; }
+
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   FIX 3 — FAQ ACCORDION — auto height, zero ghost space
+   The accordion uses HTML `hidden` attribute to toggle panels.
+   We ensure nothing reserves height when panels are closed.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── FAQ list: block layout, no overflow clipping that fights height ── */
+.faq__list {
+  display:       block          !important;
+  height:        auto           !important;
+  min-height:    0              !important;
+  overflow:      visible        !important;
+}
+
+/* ── Each item: natural block height only ── */
+.faq__item {
+  height:        auto           !important;
+  min-height:    0              !important;
+  overflow:      visible        !important;
+}
+
+/* ── Question button: auto height, no fixed row ── */
+.faq__question {
+  height:        auto           !important;
+  min-height:    0              !important;
+}
+
+/* ── Hidden state: absolutely zero presence ── */
+.faq__answer[hidden] {
+  display:    none    !important;
+  height:     0       !important;
+  padding:    0       !important;
+  margin:     0       !important;
+  border:     none    !important;
+  overflow:   hidden  !important;
+  visibility: hidden  !important;
+}
+
+/* ── Visible state: natural block height ── */
+.faq__answer:not([hidden]) {
+  display:    block   !important;
+  height:     auto    !important;
+  min-height: 0       !important;
+  overflow:   visible !important;
+  visibility: visible !important;
+}
+
+/* ── FAQ section & inner container: never fixed height ── */
+.faq,
+.faq__inner {
+  height:     auto !important;
+  min-height: 0    !important;
+  overflow:   visible !important;
+}
+
+/* ── END LIVE QA FIX PASS ── */

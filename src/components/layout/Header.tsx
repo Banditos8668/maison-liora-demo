@@ -119,43 +119,73 @@ export function Header({ onBook }: Props) {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — full-screen overlay */}
       <div
         id="ml-mobile-menu"
         className={`ml-header__mobile ${menuOpen ? 'ml-header__mobile--open' : ''}`}
         aria-hidden={!menuOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Hauptnavigation"
       >
-        <nav aria-label="Mobile Navigation">
-          {navLinks.map(link => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className="ml-header__mobile-link"
-              onClick={e => { e.preventDefault(); handleNavClick(link.id); }}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
 
-        <div className="ml-header__mobile-footer">
-          <div className="ml-header__mobile-lang">
+        {/* ── Top bar: brand name + close button ── */}
+        <div className="ml-mob__top">
+          <span className="ml-mob__brand">{business.name}</span>
+          <button
+            className="ml-mob__close"
+            onClick={close}
+            aria-label="Menü schliessen"
+            type="button"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        {/* ── Scrollable body: nav links + language toggle ── */}
+        <div className="ml-mob__body">
+          <nav aria-label="Mobile Navigation">
+            {navLinks.map(link => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className="ml-header__mobile-link"
+                onClick={e => { e.preventDefault(); handleNavClick(link.id); }}
+                tabIndex={menuOpen ? 0 : -1}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="ml-mob__lang">
             <LanguageToggle />
           </div>
+        </div>
+
+        {/* ── Pinned bottom: booking CTA + phone ── */}
+        <div className="ml-mob__ctas">
           <button
-            className="btn btn-primary ml-header__mobile-cta"
+            className="btn btn-primary ml-mob__cta-book"
             onClick={handleBook}
             type="button"
           >
             {t.nav.book}
           </button>
+          <a
+            href={`tel:${business.contact.phoneRaw}`}
+            className="btn btn-ghost ml-mob__cta-phone"
+            onClick={close}
+          >
+            {business.contact.phone}
+          </a>
         </div>
-      </div>
 
-      {/* Mobile overlay */}
-      {menuOpen && (
-        <div className="ml-header__overlay" onClick={close} aria-hidden="true" />
-      )}
+      </div>
     </header>
   );
 }
