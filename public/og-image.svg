@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Warm cream background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#F2EDE6"/>
+    </linearGradient>
+    <!-- Subtle vignette overlay -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="60%"  stop-color="transparent"/>
+      <stop offset="100%" stop-color="rgba(36,26,23,0.06)"/>
+    </radialGradient>
+    <!-- Left panel gradient (espresso) -->
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2A1D1A"/>
+      <stop offset="100%" stop-color="#3D2B27"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Left espresso panel -->
+  <rect x="0" y="0" width="420" height="630" fill="url(#panel)"/>
+
+  <!-- Gold accent line on panel edge -->
+  <rect x="418" y="0" width="2" height="630" fill="#B98A52" opacity="0.6"/>
+
+  <!-- Subtle dot pattern on panel -->
+  <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+    <circle cx="12" cy="12" r="1" fill="rgba(250,248,245,0.06)"/>
+  </pattern>
+  <rect x="0" y="0" width="420" height="630" fill="url(#dots)"/>
+
+  <!-- Panel: brand mark -->
+  <text x="210" y="230"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="13"
+        font-weight="400"
+        letter-spacing="6"
+        fill="rgba(185,138,82,0.90)"
+        text-anchor="middle"
+        text-transform="uppercase">MAISON LUMIÈRE</text>
+
+  <!-- Panel: thin gold rule -->
+  <line x1="150" y1="248" x2="270" y2="248" stroke="#B98A52" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- Panel: tagline -->
+  <text x="210" y="274"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="26"
+        font-weight="400"
+        font-style="italic"
+        fill="rgba(250,248,245,0.90)"
+        text-anchor="middle">Beauty Studio</text>
+
+  <text x="210" y="302"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="14"
+        font-weight="400"
+        letter-spacing="3"
+        fill="rgba(250,248,245,0.50)"
+        text-anchor="middle">ZÜRICH</text>
+
+  <!-- Panel: rating badge -->
+  <rect x="157" y="370" width="106" height="34" rx="3" fill="rgba(185,138,82,0.15)" stroke="rgba(185,138,82,0.35)" stroke-width="1"/>
+  <text x="210" y="391"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="12"
+        font-weight="600"
+        fill="rgba(185,138,82,0.90)"
+        text-anchor="middle"
+        letter-spacing="1">★ 4.9  ·  87 Bewertungen</text>
+
+  <!-- Right content area: main heading -->
+  <text x="810" y="210"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="11"
+        font-weight="400"
+        letter-spacing="5"
+        fill="#B98A52"
+        text-anchor="middle">PREMIUM BEAUTY TREATMENTS</text>
+
+  <!-- Thin gold rule under eyebrow -->
+  <line x1="740" y1="226" x2="880" y2="226" stroke="#B98A52" stroke-width="1" opacity="0.5"/>
+
+  <!-- Main headline line 1 -->
+  <text x="810" y="285"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="52"
+        font-weight="300"
+        letter-spacing="-1"
+        fill="#241A17"
+        text-anchor="middle">Das Ritual,</text>
+
+  <!-- Main headline line 2 -->
+  <text x="810" y="345"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="52"
+        font-weight="300"
+        letter-spacing="-1"
+        fill="#241A17"
+        text-anchor="middle">sich selbst</text>
+
+  <!-- Main headline line 3 italic + mauve -->
+  <text x="810" y="405"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="52"
+        font-weight="300"
+        font-style="italic"
+        letter-spacing="-1"
+        fill="#B97972"
+        text-anchor="middle">wieder zu spüren.</text>
+
+  <!-- Subline -->
+  <text x="810" y="460"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        font-weight="400"
+        fill="#7A6258"
+        text-anchor="middle">Jede Behandlung beginnt mit einer persönlichen Beratung.</text>
+
+  <!-- CTA pill -->
+  <rect x="720" y="490" width="180" height="40" rx="3" fill="#241A17"/>
+  <text x="810" y="515"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="11"
+        font-weight="600"
+        letter-spacing="2"
+        fill="#FFFFFF"
+        text-anchor="middle">TERMIN BUCHEN</text>
+
+  <!-- Vignette overlay -->
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+
+  <!-- Demo watermark — very subtle, bottom center -->
+  <text x="810" y="610"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="10"
+        fill="rgba(120,98,88,0.35)"
+        text-anchor="middle"
+        letter-spacing="1">Demo-Konzept · LumaFlow</text>
+</svg>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Impressum – Maison Lumière (Demo)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FAF8F5;
+      --espresso:#241A17;
+      --muted:   #7A6258;
+      --gold:    #B98A52;
+      --border:  rgba(36,26,23,0.10);
+    }
+
+    body {
+      background:  var(--cream);
+      color:       var(--espresso);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size:   16px;
+      line-height: 1.7;
+      min-height:  100vh;
+      padding:     0 0 80px;
+    }
+
+    /* Header */
+    .header {
+      background:    var(--espresso);
+      padding:       24px clamp(20px, 5vw, 48px);
+      display:       flex;
+      align-items:   center;
+      justify-content: space-between;
+      gap:           16px;
+    }
+    .header__brand {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size:   1.3rem;
+      font-weight: 400;
+      color:       rgba(250,248,245,0.90);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .header__back {
+      font-size:      0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color:          rgba(250,248,245,0.45);
+      text-decoration: none;
+      transition:     color 0.2s;
+    }
+    .header__back:hover { color: rgba(250,248,245,0.80); }
+
+    /* Demo notice */
+    .demo-banner {
+      background:     rgba(185,138,82,0.08);
+      border-bottom:  1px solid rgba(185,138,82,0.20);
+      padding:        12px clamp(20px, 5vw, 48px);
+      font-size:      0.82rem;
+      color:          #8C6B34;
+      text-align:     center;
+      letter-spacing: 0.02em;
+    }
+    .demo-banner strong { font-weight: 600; }
+
+    /* Main */
+    main {
+      max-width:     740px;
+      margin-inline: auto;
+      padding:       clamp(40px, 6vw, 72px) clamp(20px, 5vw, 48px);
+    }
+
+    h1 {
+      font-family:    Georgia, 'Times New Roman', serif;
+      font-size:      clamp(1.8rem, 5vw, 2.4rem);
+      font-weight:    400;
+      letter-spacing: -0.02em;
+      line-height:    1.15;
+      color:          var(--espresso);
+      margin-bottom:  8px;
+    }
+    .subtitle {
+      font-size:    0.82rem;
+      color:        var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .gold-rule {
+      width:      48px;
+      height:     1px;
+      background: var(--gold);
+      margin:     0 0 36px;
+    }
+
+    h2 {
+      font-size:      1rem;
+      font-weight:    600;
+      color:          var(--espresso);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size:      0.78rem;
+      margin-bottom:  8px;
+      margin-top:     36px;
+    }
+    h2:first-of-type { margin-top: 0; }
+
+    p, li {
+      font-size:  0.92rem;
+      color:      var(--muted);
+      max-width:  66ch;
+    }
+    li { margin-left: 16px; margin-top: 4px; }
+
+    .divider {
+      border:     none;
+      border-top: 1px solid var(--border);
+      margin:     36px 0;
+    }
+
+    .back-link {
+      display:        inline-flex;
+      align-items:    center;
+      gap:            6px;
+      font-size:      0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color:          var(--espresso);
+      text-decoration: none;
+      margin-top:     48px;
+      border-bottom:  1px solid rgba(36,26,23,0.20);
+      padding-bottom: 2px;
+      transition:     border-color 0.2s, color 0.2s;
+    }
+    .back-link:hover {
+      color:        var(--gold);
+      border-color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="/" class="header__brand">Maison Lumière</a>
+    <a href="/" class="header__back">← Zurück zur Website</a>
+  </header>
+
+  <div class="demo-banner">
+    <strong>Demo-Konzept</strong> — Maison Lumière ist ein fiktives Beauty Studio, erstellt von LumaFlow zur Veranschaulichung. Alle Angaben sind fiktiv.
+  </div>
+
+  <main>
+    <h1>Impressum</h1>
+    <p class="subtitle">Rechtliche Angaben · Demo</p>
+    <div class="gold-rule"></div>
+
+    <h2>Angaben gemäss Art. 3 UWG</h2>
+    <p>
+      Maison Lumière Beauty Studio<br>
+      Schaffhauserstrasse 48 (Beispieladresse)<br>
+      8006 Zürich<br>
+      Schweiz
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      Telefon: +41 44 123 45 67 (Demo)<br>
+      E-Mail: hello@maisonlumiere.ch (Demo)
+    </p>
+
+    <hr class="divider">
+
+    <h2>Hinweis</h2>
+    <p>
+      Diese Website ist ein <strong>fiktives Demo-Konzept</strong> eines Beautysstudio-Webauftritts,
+      erstellt durch <strong>LumaFlow</strong>. Alle dargestellten Informationen — einschliesslich
+      Adresse, Telefonnummer, E-Mail-Adresse, Öffnungszeiten, Preise und Bewertungen — sind
+      vollständig fiktiv und dienen ausschliesslich illustrativen Zwecken.
+    </p>
+    <p style="margin-top:12px">
+      Es besteht kein reales Geschäftsverhältnis. Keine der genannten Kontaktangaben
+      führt zu einem bestehenden Betrieb.
+    </p>
+
+    <hr class="divider">
+
+    <h2>Konzept &amp; Umsetzung</h2>
+    <p>
+      Dieses Demo wurde von <strong>LumaFlow</strong> erstellt und ist urheberrechtlich geschützt.
+      Es dient ausschliesslich als Präsentations- und Verkaufsunterlage für potenzielle Kunden
+      im Beauty- und Wellness-Bereich.
+    </p>
+
+    <a href="/" class="back-link">← Zurück zur Demo-Website</a>
+  </main>
+
+</body>
+</html>
