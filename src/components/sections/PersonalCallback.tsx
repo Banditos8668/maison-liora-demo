@@ -14,6 +14,13 @@ function getMinDate() {
   return d.toISOString().split('T')[0];
 }
 
+/** Format ISO date string (YYYY-MM-DD) → German display (DD.MM.YYYY) */
+function formatDateDE(iso: string): string {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return `${d}.${m}.${y}`;
+}
+
 export function PersonalCallback() {
   const { t } = useLang();
   const cb = t.callback;
@@ -93,14 +100,39 @@ export function PersonalCallback() {
               <div className="callback2__row">
                 <div className="callback2__field">
                   <label className="callback2__label" htmlFor="cb2-date">{cb.dateLabel}</label>
-                  <input
-                    id="cb2-date"
-                    type="date"
-                    className="callback2__input"
-                    value={date}
-                    min={getMinDate()}
-                    onChange={e => setDate(e.target.value)}
-                  />
+                  {/* Custom display + native date picker overlay — works on iOS/Android/desktop */}
+                  <div className="callback2__date-wrap">
+                    {/* Visible formatted display (aria-hidden; the real input is the accessible element) */}
+                    <span
+                      className={`callback2__date-display${date ? '' : ' callback2__date-display--empty'}`}
+                      aria-hidden="true"
+                    >
+                      {date ? formatDateDE(date) : 'dd.mm.yyyy'}
+                    </span>
+                    {/* Calendar icon */}
+                    <svg
+                      className="callback2__date-icon"
+                      width="14" height="14" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" strokeWidth="1.8"
+                      strokeLinecap="round" strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    {/* Native date input: covers the entire field, opacity 0, triggers the system picker */}
+                    <input
+                      id="cb2-date"
+                      type="date"
+                      className="callback2__date-native"
+                      value={date}
+                      min={getMinDate()}
+                      onChange={e => setDate(e.target.value)}
+                      aria-label={cb.dateLabel}
+                    />
+                  </div>
                 </div>
                 <div className="callback2__field">
                   <label className="callback2__label" htmlFor="cb2-time">{cb.timeLabel}</label>
