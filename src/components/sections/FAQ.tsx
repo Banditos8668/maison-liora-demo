@@ -20,13 +20,12 @@ export function FAQ() {
         </div>
 
         <dl className="faq__list">
-          {t.faqItems.map((item, i) => {
+          {t.faqItems.map((item) => {
             const isOpen = openId === item.id;
             return (
               <div
                 key={item.id}
-                className={`faq__item fade-up ${isOpen ? 'faq__item--open' : ''}`}
-                style={{ transitionDelay: `${i * 0.07}s` }}
+                className={`faq__item ${isOpen ? 'faq__item--open' : ''}`}
               >
                 <dt>
                   <button

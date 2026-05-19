@@ -12044,3 +12044,85 @@ p {
 }
 
 /* ── END LIVE QA FIX PASS ── */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   FAQ BLANK-SPACE FIX — final authority
+   Root cause: faq__item elements carried fade-up (opacity:0 + translateY)
+   which made items invisible yet still occupying flow height inside the
+   card. Items now render without scroll animation; the section heading
+   still fades in fine. This block also restores faq__list to the correct
+   flex layout and zeros every possible height reservation.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Restore list to clean flex column (overrides the "display: block"
+      written by the earlier FIX-3 pass) ── */
+.faq__list {
+  display:        flex            !important;
+  flex-direction: column          !important;
+  gap:            0               !important;
+  height:         auto            !important;
+  min-height:     0               !important;
+  max-height:     none            !important;
+  overflow:       hidden          !important;  /* needed for border-radius clipping */
+  overflow-x:     hidden          !important;
+  overflow-y:     visible         !important;  /* let height grow with content */
+  width:          100%            !important;
+  box-sizing:     border-box      !important;
+}
+
+/* ── Each item: natural height only, no reservations ── */
+.faq__item {
+  display:        block           !important;
+  height:         auto            !important;
+  min-height:     0               !important;
+  max-height:     none            !important;
+  overflow:       visible         !important;
+  flex-shrink:    0               !important;  /* never compress below content height */
+}
+
+/* ── Question button: wraps to content, never fixed ── */
+.faq__question {
+  height:         auto            !important;
+  min-height:     52px            !important;  /* comfortable tap target */
+  max-height:     none            !important;
+  box-sizing:     border-box      !important;
+}
+
+/* ── Closed answer: truly gone — no height, no padding, nothing ── */
+.faq__answer[hidden] {
+  display:        none            !important;
+  height:         0               !important;
+  min-height:     0               !important;
+  max-height:     0               !important;
+  padding:        0               !important;
+  margin:         0               !important;
+  overflow:       hidden          !important;
+  visibility:     hidden          !important;
+  border:         none            !important;
+}
+
+/* ── Open answer: natural block height ── */
+.faq__answer:not([hidden]) {
+  display:        block           !important;
+  height:         auto            !important;
+  min-height:     0               !important;
+  max-height:     none            !important;
+  overflow:       visible         !important;
+  visibility:     visible         !important;
+  padding:        0 24px 22px     !important;
+}
+
+/* ── Section and inner wrapper: never impose a fixed height ── */
+.faq {
+  height:         auto            !important;
+  min-height:     0               !important;
+  overflow:       visible         !important;
+}
+.faq__inner {
+  height:         auto            !important;
+  min-height:     0               !important;
+  overflow:       visible         !important;
+}
+
+/* ── END FAQ BLANK-SPACE FIX ── */
